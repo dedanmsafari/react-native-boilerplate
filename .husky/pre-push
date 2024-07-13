@@ -1,1 +1,1 @@
-npx expo test
+npm run test
