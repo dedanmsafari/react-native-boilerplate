@@ -6,13 +6,13 @@
  * You can remove the `reset-project` script from package.json and safely delete this file after running it.
  */
 
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 const root = process.cwd();
-const oldDirPath = path.join(root, "app");
-const newDirPath = path.join(root, "app-example");
-const newAppDirPath = path.join(root, "app");
+const oldDirPath = path.join(root, 'app');
+const newDirPath = path.join(root, 'app-example');
+const newAppDirPath = path.join(root, 'app');
 
 const indexContent = `import { Text, View } from "react-native";
 
@@ -42,31 +42,27 @@ export default function RootLayout() {
 }
 `;
 
-fs.rename(oldDirPath, newDirPath, (error) => {
+fs.rename(oldDirPath, newDirPath, error => {
   if (error) {
-    return console.error(`Error renaming directory: ${error}`);
+    return;
   }
-  console.log("/app moved to /app-example.");
 
-  fs.mkdir(newAppDirPath, { recursive: true }, (error) => {
+  fs.mkdir(newAppDirPath, { recursive: true }, error => {
     if (error) {
-      return console.error(`Error creating new app directory: ${error}`);
+      return;
     }
-    console.log("New /app directory created.");
 
-    const indexPath = path.join(newAppDirPath, "index.tsx");
-    fs.writeFile(indexPath, indexContent, (error) => {
+    const indexPath = path.join(newAppDirPath, 'index.tsx');
+    fs.writeFile(indexPath, indexContent, error => {
       if (error) {
-        return console.error(`Error creating index.tsx: ${error}`);
+        return;
       }
-      console.log("app/index.tsx created.");
 
-      const layoutPath = path.join(newAppDirPath, "_layout.tsx");
-      fs.writeFile(layoutPath, layoutContent, (error) => {
+      const layoutPath = path.join(newAppDirPath, '_layout.tsx');
+      fs.writeFile(layoutPath, layoutContent, error => {
         if (error) {
-          return console.error(`Error creating _layout.tsx: ${error}`);
+          return;
         }
-        console.log("app/_layout.tsx created.");
       });
     });
   });
