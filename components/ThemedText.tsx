@@ -7,6 +7,9 @@ export type ThemedTextProps = TextProps & {
   darkColor?: string;
   type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
 };
+const Colors = {
+  blue: '#0a7ea4',
+};
 
 export function ThemedText({
   darkColor,
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   link: {
-    color: '#0a7ea4',
+    color: Colors.blue,
     fontSize: 16,
     lineHeight: 30,
   },
